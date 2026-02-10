@@ -1,13 +1,12 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import os
 from sklearn.metrics import classification_report, confusion_matrix
 
 st.title("Breast Cancer Classification App")
 
-st.write("Upload test dataset (CSV format)")
-
-uploaded_file = st.file_uploader("Choose CSV file")
+uploaded_file = st.file_uploader("Upload CSV file")
 
 model_option = st.selectbox(
     "Select Model",
@@ -36,7 +35,11 @@ if uploaded_file is not None:
     X = df.iloc[:, :-1]
     y = df.iloc[:, -1]
 
-    model = joblib.load(model_files[model_option])
+    model_path = os.path.join("models", model_files[model_option])
+
+    st.write("Loading model from:", model_path)  # debug line
+
+    model = joblib.load(model_path)
 
     preds = model.predict(X)
 
