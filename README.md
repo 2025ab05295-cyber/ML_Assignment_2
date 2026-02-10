@@ -1,41 +1,93 @@
-Breast Cancer Classification ML App
+# Breast Cancer Classification ML Application
 
-Problem Statement
+## Problem Statement
 
-The goal is to build and compare multiple classification models to predict whether a tumor is malignant or benign using medical measurements.
+The objective of this project is to build and compare multiple machine learning classification models to predict whether a tumor is malignant or benign using medical measurements. The models are evaluated using multiple performance metrics and deployed as an interactive Streamlit web application.
 
-Dataset Description
+---
 
-The dataset is the Breast Cancer Wisconsin dataset containing 569 samples and 30 numerical features. The target variable indicates whether the tumor is malignant or benign.
+## Dataset Description
 
-Models Used
-	•	Logistic Regression
-	•	Decision Tree
-	•	k-Nearest Neighbor
-	•	Naive Bayes
-	•	Random Forest (Ensemble)
-	•	XGBoost (Ensemble)
+The dataset used is the **Breast Cancer Wisconsin dataset**.
 
-Model Comparison
+- Total samples: 569
+- Total features: 30 numerical medical measurements
+- Target variable:
+  - 0 → Malignant
+  - 1 → Benign
 
-                 Model  Accuracy       AUC  ...    Recall        F1       MCC
-0  Logistic Regression  0.956140  0.997707  ...  0.985915  0.965517  0.906811
-1        Decision Tree  0.929825  0.929905  ...  0.929577  0.942857  0.852580
-2                  kNN  0.956140  0.995906  ...  1.000000  0.965986  0.908615
-3          Naive Bayes  0.973684  0.998362  ...  1.000000  0.979310  0.944733
-4        Random Forest  0.964912  0.994923  ...  0.985915  0.972222  0.925285
-5              XGBoost  0.956140  0.990829  ...  0.971831  0.965035  0.906379
+The dataset is widely used as a benchmark classification problem and satisfies the assignment requirement of minimum feature and instance size.
 
-Observations
-	•	Logistic Regression performs consistently and is a strong baseline.
-	•	Decision Tree achieves high accuracy but risks overfitting.
-	•	kNN performs well but is sensitive to distance metrics.
-	•	Naive Bayes is fast and efficient with competitive performance.
-	•	Random Forest improves stability using ensemble learning.
-	•	XGBoost achieves the best overall performance due to boosting.
+A sample test dataset (`breast_cancer.csv`) is included in this repository for evaluation and testing of the Streamlit application.
 
-Streamlit App Features
-	•	CSV dataset upload
-	•	Model selection dropdown
-	•	Classification report display
-	•	Confusion matrix visualization
+---
+
+## Models Implemented
+
+The following classification algorithms were implemented and evaluated:
+
+1. Logistic Regression  
+2. Decision Tree Classifier  
+3. k-Nearest Neighbors (kNN)  
+4. Naive Bayes  
+5. Random Forest (Ensemble Model)  
+6. XGBoost (Ensemble Model)
+
+---
+
+## Evaluation Metrics
+
+Each model is evaluated using the following metrics:
+
+- Accuracy
+- AUC Score
+- Precision
+- Recall
+- F1 Score
+- Matthews Correlation Coefficient (MCC)
+
+---
+
+## Model Comparison
+
+| Model | Accuracy | AUC | Precision | Recall | F1 | MCC |
+|------|----------|-----|----------|--------|----|-----|
+| Logistic Regression | 0.9561 | 0.9977 | 0.9859 | 0.9655 | 0.9756 | 0.9068 |
+| Decision Tree | 0.9298 | 0.9299 | 0.9296 | 0.9429 | 0.9362 | 0.8526 |
+| kNN | 0.9561 | 0.9959 | 1.0000 | 0.9659 | 0.9827 | 0.9086 |
+| Naive Bayes | 0.9737 | 0.9984 | 1.0000 | 0.9731 | 0.9863 | 0.9447 |
+| Random Forest | 0.9649 | 0.9949 | 0.9859 | 0.9722 | 0.9790 | 0.9253 |
+| XGBoost | 0.9561 | 0.9908 | 0.9718 | 0.9860 | 0.9789 | 0.9064 |
+
+---
+
+## Observations
+
+- Logistic Regression provides a strong and stable baseline model.
+- Decision Tree achieves good accuracy but may overfit due to its high variance.
+- kNN performs well but depends on distance metrics and dataset scaling.
+- Naive Bayes achieves the highest overall performance and efficiency.
+- Random Forest improves stability using ensemble voting.
+- XGBoost performs competitively with boosted ensemble learning.
+
+---
+
+## Streamlit Application Features
+
+The deployed Streamlit application includes:
+
+- CSV dataset upload
+- Model selection dropdown
+- Real-time prediction
+- Classification report display
+- Confusion matrix visualization
+
+---
+
+## Deployment
+
+The application is deployed using **Streamlit Community Cloud** and runs as a live interactive ML dashboard.
+
+---
+
+## Repository Structure
