@@ -91,3 +91,23 @@ The application is deployed using **Streamlit Community Cloud** and runs as a li
 ---
 
 ## Repository Structure
+ml-assignment-2/
+│
+├── app.py
+├── train_models.py
+├── breast_cancer.csv
+├── model_results.csv
+├── requirements.txt
+├── README.md
+└── models/
+├── model_Logistic_Regression.pkl
+├── model_Decision_Tree.pkl
+├── model_kNN.pkl
+├── model_Naive_Bayes.pkl
+├── model_Random_Forest.pkl
+└── model_XGBoost.pkl
+---
+
+## Conclusion
+
+This project demonstrates a complete machine learning workflow including model training, evaluation, comparison, deployment, and interactive visualization using Streamlit. It simulates a real-world ML pipeline from data processing to cloud deployment.
