@@ -1,12 +1,23 @@
+import numpy as np
 import streamlit as st
 import pandas as pd
 import joblib
 import os
-from sklearn.metrics import classification_report, confusion_matrix
+import matplotlib.pyplot as plt
+
+from sklearn.metrics import (
+    classification_report,
+    confusion_matrix,
+    accuracy_score
+)
+
+st.set_page_config(page_title="ML Classification App", layout="centered")
 
 st.title("Breast Cancer Classification App")
 
-uploaded_file = st.file_uploader("Upload CSV file")
+st.write("Upload test dataset (CSV format)")
+
+uploaded_file = st.file_uploader("Choose CSV file")
 
 model_option = st.selectbox(
     "Select Model",
@@ -29,22 +40,53 @@ model_files = {
     "XGBoost": "model_XGBoost.pkl"
 }
 
+st.divider()
+
 if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
+    try:
+        df = pd.read_csv(uploaded_file)
 
-    X = df.iloc[:, :-1]
-    y = df.iloc[:, -1]
+        st.subheader("Dataset Preview")
+        st.dataframe(df.head())
 
-    model_path = os.path.join("models", model_files[model_option])
+        X = df.iloc[:, :-1]
+        y = df.iloc[:, -1]
 
-    st.write("Loading model from:", model_path)  # debug line
+        model_path = os.path.join("models", model_files[model_option])
+        model = joblib.load(model_path)
 
-    model = joblib.load(model_path)
+        preds = model.predict(X)
 
-    preds = model.predict(X)
+        st.divider()
+        st.subheader("Model Evaluation Results")
 
-    st.subheader("Classification Report")
-    st.text(classification_report(y, preds))
+        acc = accuracy_score(y, preds)
+        st.metric("Accuracy", round(acc, 4))
 
-    st.subheader("Confusion Matrix")
-    st.write(confusion_matrix(y, preds))
+        st.text(classification_report(y, preds))
+
+        # Confusion Matrix numeric
+        cm = confusion_matrix(y, preds)
+
+        st.subheader("Confusion Matrix (Values)")
+        st.write(cm)
+
+        # Confusion Matrix heatmap
+        st.subheader("Confusion Matrix (Diagram)")
+
+        fig, ax = plt.subplots()
+        cax = ax.matshow(cm)
+        plt.title("Confusion Matrix")
+        fig.colorbar(cax)
+
+        for (i, j), val in np.ndenumerate(cm):
+            ax.text(j, i, val, ha='center', va='center')
+
+        ax.set_xlabel("Predicted")
+        ax.set_ylabel("Actual")
+
+        st.pyplot(fig)
+
+    except Exception as e:
+        st.error("Error processing dataset. Please upload correct CSV format.")
+        st.exception(e)
