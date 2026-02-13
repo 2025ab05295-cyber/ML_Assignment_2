@@ -63,7 +63,11 @@ if uploaded_file is not None:
         acc = accuracy_score(y, preds)
         st.metric("Accuracy", round(acc, 4))
 
-        st.text(classification_report(y, preds))
+        report = classification_report(y, preds, output_dict=True)
+        report_df = pd.DataFrame(report).transpose()
+
+        st.subheader("Classification Report (Table)")
+        st.dataframe(report_df)
 
         # Confusion Matrix numeric
         cm = confusion_matrix(y, preds)
