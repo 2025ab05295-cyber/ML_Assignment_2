@@ -52,7 +52,7 @@ if uploaded_file is not None:
         X = df.iloc[:, :-1]
         y = df.iloc[:, -1]
 
-        model_path = os.path.join("model", model_files[model_option])
+        model_path = os.path.join("models", model_files[model_option])
         model = joblib.load(model_path)
 
         preds = model.predict(X)
