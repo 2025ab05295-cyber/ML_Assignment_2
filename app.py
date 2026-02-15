@@ -14,7 +14,14 @@ from sklearn.metrics import (
 st.set_page_config(page_title="ML Classification App", layout="centered")
 
 st.title("Breast Cancer Classification App")
+st.subheader("Sample Dataset")
 
+sample_url = "https://raw.githubusercontent.com/2025ab05295-cyber/ML_Assignment_2/main/breast_cancer.csv"
+
+st.markdown(
+    f"[⬇ Download sample dataset]({sample_url})",
+    unsafe_allow_html=True
+)
 st.write("Upload test dataset (CSV format)")
 
 uploaded_file = st.file_uploader("Choose CSV file")
