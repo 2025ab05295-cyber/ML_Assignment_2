@@ -91,22 +91,23 @@ The application is deployed using **Streamlit Community Cloud** and runs as a li
 ---
 
 ## Repository Structure
-ml-assignment-2/
-│
-├── app.py
-├── train_models.py
-├── breast_cancer.csv
-├── model_results.csv
-├── requirements.txt
-├── README.md
-└── models/
-├── model_Logistic_Regression.pkl
-├── model_Decision_Tree.pkl
-├── model_kNN.pkl
-├── model_Naive_Bayes.pkl
-├── model_Random_Forest.pkl
-└── model_XGBoost.pkl
----
+heart-disease-ml/
+
+- ML_Assignment_2/
+  - app.py
+  - train_models.py
+  - explore_dataset.py
+  - breast_cancer.csv
+  - model_results.csv
+  - requirements.txt
+  - README.md
+  - model/
+    - model_Logistic_Regression.pkl
+    - model_Decision_Tree.pkl
+    - model_kNN.pkl
+    - model_Naive_Bayes.pkl
+    - model_Random_Forest.pkl
+    - model_XGBoost.pkl
 
 ## Conclusion
 
